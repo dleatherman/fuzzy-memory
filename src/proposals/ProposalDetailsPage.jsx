@@ -21,7 +21,7 @@ class ProposalDetailsPage extends Component {
     proposal: {},
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const { id } = this.props
     getProposalDetails(id).then(proposal => {
       if (proposal) {
@@ -29,17 +29,21 @@ class ProposalDetailsPage extends Component {
           isLoading: false,
           proposal: proposal,
         })
+      } else {
+        this.setState({
+          isNotFound: true
+        })
       }
     })
   }
 
-  render () {
+  render() {
     const { isNotFound, isLoading, proposal } = this.state
-    if (isNotFound) return <NotFound/>
+    if (isNotFound) return <NotFound />
     return (
       <Page
         className="ProposalDetailsPage"
-        title={isLoading ? '…' : 'title'}
+        title={isLoading ? '…' : `${proposal.title}`}
       >
         <div className="ProposalDetailsPage__content">
           <div>
@@ -50,8 +54,11 @@ class ProposalDetailsPage extends Component {
               back to Call for Papers
             </Link>
           </div>
-          <Loading/>
-          <ProposalDetails proposal={{}}/>
+          {isLoading ?
+            <Loading />
+            :
+            <ProposalDetails proposal={{ proposal }} />
+          }
         </div>
       </Page>
     )
