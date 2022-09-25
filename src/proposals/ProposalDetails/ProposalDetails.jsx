@@ -6,6 +6,7 @@ import './ProposalDetails.css'
 
 const ProposalDetails = ({ proposal }) => {
   const { speaker, category, description } = proposal
+
   return (
     <div className="ProposalDetails">
       <DetailsSection
@@ -13,7 +14,7 @@ const ProposalDetails = ({ proposal }) => {
         name="speaker"
       >
         <span className="ProposalDetails__speaker__value">
-          {proposal.speaker}
+          {speaker}
         </span>
       </DetailsSection>
       <DetailsSection

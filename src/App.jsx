@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Redirect, Route, Switch, useParams } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
 import './App.css'
 import { ProposalDetailsPage, ProposalListPage } from './proposals'
 
@@ -9,8 +9,8 @@ const App = () => (
       <main className="App_content">
         <Switch>
           <Route path="/proposals/:proposalId">
-            {() => (
-              <ProposalDetailsPage id={'84c9927f-231b-45c6-9d34-f395f13ade29'} />
+            {(props) => (
+              <ProposalDetailsPage id={props.match.params.proposalId} />
             )}
           </Route>
           <Route path="/proposals">
