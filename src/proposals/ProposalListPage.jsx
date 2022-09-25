@@ -12,15 +12,17 @@ class ProposalListPage extends Component {
     proposals: [],
   }
 
-  componentDidMount () {
+  componentDidMount() {
     getProposalList().then(proposals => {
       this.setState({
         proposals: proposals,
+        isLoading: false
       })
     })
   }
 
-  updateProposalStatus = (id, status) => {
+  updateProposalStatus = (id, status, talk) => {
+    console.log('test', id, status, talk)
     this.setState(prevState => {
       const prevProposals = prevState.proposals
       const nextProposals = prevProposals.map(proposal =>
@@ -35,15 +37,18 @@ class ProposalListPage extends Component {
     setProposalStatus(id, status)
   }
 
-  render () {
+  render() {
     const { isLoading, proposals } = this.state
     return (
       <Page title="Call for Papers">
-        <Loading/>
-        <ProposalList
-          proposals={proposals}
-          onProposalStatusUpdate={() => {}}
-        />
+        {isLoading ?
+          <Loading />
+          :
+          <ProposalList
+            proposals={proposals}
+            onProposalStatusUpdate={() => { this.updateProposalStatus('84c9927f-231b-45c6-9d34-f395f13ade29', 'accepted') }}
+          />
+        }
       </Page>
     )
   }

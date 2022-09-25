@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
@@ -10,29 +10,38 @@ const withoutEventDefault = callback => event => {
 }
 
 const ProposalRow = ({ proposal, onStatusUpdate }) => {
-  const { id, title, category, status } = proposal
+  const { id, title, category, status, speaker } = proposal
   return (
-    <div className={classNames('ProposalRow', 'ProposalRow--accepted')}>
-      <div className="ProposalsRow__status_indicator"/>
+    <div className={classNames('ProposalRow', `ProposalRow--${status}`)}>
+      <div className="ProposalsRow__status_indicator" />
       <div className="ProposalsRow__title">
         {title}
       </div>
-      <div className="ProposalsRow__speaker"/>
+      <div className="ProposalsRow__speaker">
+        {speaker}
+      </div>
       <div className="ProposalsRow__category">
-        category: {}
+        category: {category}
       </div>
       <div className="ProposalsRow__status">
         status: {status}
       </div>
-      <div className="ProposalsRow__accept_button_placeholder">
-        Accept
-      </div>
-      <div
-        className="ProposalsRow__reject_button"
-        onClick={withoutEventDefault(() => onStatusUpdate(id, 'rejected'))}
-      >
-        Reject
-      </div>
+      {status !== 'accepted' &&
+        <button
+          className="ProposalsRow__accept_button"
+          onClick={withoutEventDefault(() => onStatusUpdate(id, 'accepted'))}
+        >
+          Accept
+        </button>
+      }
+      {status !== 'rejected' &&
+        <button
+          className="ProposalsRow__reject_button"
+          onClick={withoutEventDefault(() => onStatusUpdate(id, 'rejected'))}
+        >
+          Reject
+        </button>
+      }
     </div>
   )
 }
