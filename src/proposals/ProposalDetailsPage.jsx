@@ -57,7 +57,7 @@ class ProposalDetailsPage extends Component {
           {isLoading ?
             <Loading />
             :
-            <ProposalDetails proposal={{ proposal }} />
+            <ProposalDetails proposal={proposal} />
           }
         </div>
       </Page>
