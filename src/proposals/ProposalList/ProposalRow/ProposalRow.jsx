@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
@@ -10,7 +10,8 @@ const withoutEventDefault = callback => event => {
 }
 
 const ProposalRow = ({ proposal, onStatusUpdate }) => {
-  const { id, title, category, status, speaker } = proposal
+  const { id, title, category, speaker, status } = proposal
+
   return (
     <div className={classNames('ProposalRow', `ProposalRow--${status}`)}>
       <div className="ProposalsRow__status_indicator" />

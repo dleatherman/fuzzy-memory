@@ -19,7 +19,7 @@ const ProposalList = ({ proposals, onProposalStatusUpdate }) => (
         >
           <ProposalRow
             proposal={proposal}
-            onStatusUpdate={(proposal) => { onProposalStatusUpdate(proposal.id, 'active') }}
+            onStatusUpdate={(id, status) => { onProposalStatusUpdate(id, status) }}
           />
         </Link>
       </li>

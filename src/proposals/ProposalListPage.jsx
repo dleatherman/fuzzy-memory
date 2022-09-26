@@ -21,13 +21,12 @@ class ProposalListPage extends Component {
     })
   }
 
-  updateProposalStatus = (id, status, talk) => {
-    console.log('test', id, status, talk)
+  updateProposalStatus = (id, status) => {
     this.setState(prevState => {
       const prevProposals = prevState.proposals
       const nextProposals = prevProposals.map(proposal =>
         proposal.id === id
-          ? proposal
+          ? { ...proposal, status }
           : proposal
       )
       return {
@@ -46,7 +45,7 @@ class ProposalListPage extends Component {
           :
           <ProposalList
             proposals={proposals}
-            onProposalStatusUpdate={() => { this.updateProposalStatus('84c9927f-231b-45c6-9d34-f395f13ade29', 'accepted') }}
+            onProposalStatusUpdate={(id, status) => { this.updateProposalStatus(id, status) }}
           />
         }
       </Page>
