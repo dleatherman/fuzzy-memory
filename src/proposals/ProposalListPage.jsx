@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Loading from '../Loading'
 import Page from '../Page'
 import ProposalList from './ProposalList'
-import { getProposalList, setProposalStatus } from './service'
+import { getProposalList, setProposalStatus, getProposalDetails } from './service'
 
 class ProposalListPage extends Component {
 
