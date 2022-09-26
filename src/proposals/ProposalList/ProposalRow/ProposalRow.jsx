@@ -24,9 +24,6 @@ const ProposalRow = ({ proposal, onStatusUpdate }) => {
       <div className="ProposalsRow__category">
         category: {category}
       </div>
-      <div className="ProposalsRow__status">
-        status: {status}
-      </div>
       {status !== 'accepted' &&
         <button
           className="ProposalsRow__accept_button"
